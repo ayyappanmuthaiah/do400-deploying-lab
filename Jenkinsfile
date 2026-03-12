@@ -4,7 +4,11 @@ pipeline {
     }
     environment { QUAY = credentials('QUAY_USER') }
     stages {
-        ...output omitted...
+        stage("Test") {
+            steps {
+                sh "./mvnw verify"
+            }
+        }
         stage("Build & Push Image") {
             steps {
                 sh '''
